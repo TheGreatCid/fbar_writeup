@@ -1,0 +1,122 @@
+% Include in main.tex with: \input{figures/elastic_energy_quasi_elastic}
+% Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
+%                       \usepgfplotslibrary{groupplots}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=1.6cm,
+    },
+    width=0.46\textwidth,
+    height=0.46\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xlabel={Time},
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xmin=1.5, xmax=2.0,
+    legend style={font=\scriptsize, cells={anchor=west}},
+    legend pos=north west,
+]
+
+%% --- Left panel: old method ---
+\nextgroupplot[title={Old method}]
+
+\addplot[blue,             thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p30_old.csv};
+\addlegendentry{$\nu = 0.30$}
+
+\addplot[red,              thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p40_old.csv};
+\addlegendentry{$\nu = 0.40$}
+
+\addplot[green!70!black,   thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p45_old.csv};
+\addlegendentry{$\nu = 0.45$}
+
+\addplot[orange!90!black,  thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p48_old.csv};
+\addlegendentry{$\nu = 0.48$}
+
+\addplot[violet,           thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p49_old.csv};
+\addlegendentry{$\nu = 0.49$}
+
+\addplot[brown!70!black,   thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/reference_fbar_out_1_nu_0p495_old.csv};
+\addlegendentry{$\nu = 0.495$}
+
+\addplot[blue,             thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p30_old.csv};
+
+\addplot[red,              thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p40_old.csv};
+
+\addplot[green!70!black,   thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p45_old.csv};
+
+\addplot[orange!90!black,  thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p48_old.csv};
+
+\addplot[violet,           thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p49_old.csv};
+
+\addplot[brown!70!black,   thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_quasi_elastic/restart_fbar_out_1_nu_0p495_old.csv};
+
+% Vertical marker at restart point
+\draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,22000);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.55,3000) {restart};
+
+%% --- Right panel: new method ---
+\nextgroupplot[
+    title={New method},
+    yticklabel pos=right,
+]
+
+\addplot[blue,             thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p30_new.csv};
+
+\addplot[red,              thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p40_new.csv};
+
+\addplot[green!70!black,   thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p45_new.csv};
+
+\addplot[orange!90!black,  thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p48_new.csv};
+
+\addplot[violet,           thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p49_new.csv};
+
+\addplot[brown!70!black,   thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/reference_fbar_out_1_nu_0p495_new.csv};
+
+\addplot[blue,             thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p30_new.csv};
+
+\addplot[red,              thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p40_new.csv};
+
+\addplot[green!70!black,   thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p45_new.csv};
+
+\addplot[orange!90!black,  thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p48_new.csv};
+
+\addplot[violet,           thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p49_new.csv};
+
+\addplot[brown!70!black,   thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_quasi_elastic/restart_fbar_out_1_nu_0p495_new.csv};
+
+\draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,22000);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.55,3000) {restart};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time near the restart point for the old method (left) and new method (right) of the quasi-static elastic simulations, for varying Poisson's ratio $\nu$. Solid lines: reference runs. Dashed lines: restart continuations (same color as the corresponding reference, $\nu$ legend in the left panel applies to both panels).}
+\label{fig:elastic_energy_quasi_elastic}
+\end{figure}

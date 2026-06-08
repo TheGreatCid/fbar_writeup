@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(grep -E '\\\\.\\(aux|fdb_latexmk|fls|log|synctex\\\\.gz|pdf\\)$')",
+      "Bash(pdftoppm -png -f 6 -l 6 -r 130 main.pdf /tmp/qe_p6)"
+    ]
+  }
+}
