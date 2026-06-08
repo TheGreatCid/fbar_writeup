@@ -1,0 +1,54 @@
+% Include in main.tex with: \input{figures/fbar_strength_comparison_elastic}
+% Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
+%                       \usepgfplotslibrary{groupplots}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=1.8cm,
+    },
+    width=0.42\textwidth,
+    height=0.42\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xlabel={Max F-bar pressure correction (ref)},
+    nodes near coords,
+    nodes near coords style={font=\small, anchor=south west},
+    point meta=explicit symbolic,
+]
+
+%% --- Left panel: new method ---
+\nextgroupplot[
+    title={New method},
+    ylabel={Relative error at target},
+    ymax=3e-5
+]
+\addplot[only marks, mark=*, mark size=3pt, blue] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_ref,
+    y=rel_err_target,
+    meta=nu,
+]{data/strength/fbar_strength_results_elastic_new.csv};
+
+%% --- Right panel: old method ---
+\nextgroupplot[
+    title={Old method},
+    ylabel={Relative error at target},
+    yticklabel pos=right,
+    ymax=6e-3
+]
+\addplot[only marks, mark=*, mark size=3pt, red] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_ref,
+    y=rel_err_target,
+    meta=nu,
+]{data/strength/fbar_strength_results_elastic_old.csv};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Dynamic-elastic simulation: Relative error at target vs.\ maximum F-bar pressure correction for the new method (left) and old method (right), with Poisson's ratio $\nu$ labelled at each point.}
+\label{fig:fbar_strength_comparison_elastic}
+\end{figure}

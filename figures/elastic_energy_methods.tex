@@ -1,0 +1,79 @@
+% Include in main.tex with: \input{figures/elastic_energy_methods}
+% Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
+%                       \usepgfplotslibrary{groupplots}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 2,
+        horizontal sep=1.6cm,
+        vertical sep=1.8cm,
+    },
+    width=0.42\textwidth,
+    height=0.42\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xlabel={Time},
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xmin=0, xmax=2.0,
+]
+
+%% --- Row 1, Left: nu=0.30, old method ---
+\nextgroupplot[title={Old method, $\nu = 0.30$}]
+
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/old_method/reference_fbar_out_1_nu_0p30_old.csv};
+\addlegendentry{Reference}
+
+\addplot[red!80!yellow, line width=1.5pt, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/old_method/restart_fbar_out_1_nu_0p30_old.csv};
+\addlegendentry{Restart}
+
+%% --- Row 1, Right: nu=0.30, new method ---
+\nextgroupplot[
+    title={New method, $\nu = 0.30$},
+    yticklabel pos=right,
+]
+
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/old_method/reference_fbar_out_1_nu_0p30_old.csv};
+
+\addplot[red!80!yellow, line width=1.5pt, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/new_method/restart_fbar_out_1_nu_0p30_new.csv};
+
+%% --- Row 2, Left: nu=0.495, old method ---
+\nextgroupplot[title={Old method, $\nu = 0.495$}]
+
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/old_method/reference_fbar_out_1_nu_0p495_old.csv};
+
+\addplot[red!80!yellow, line width=1.5pt, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/old_method/restart_fbar_out_1_nu_0p495_old.csv};
+
+%% --- Row 2, Right: nu=0.495, new method ---
+\nextgroupplot[
+    title={New method, $\nu = 0.495$},
+    yticklabel pos=right,
+]
+
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/new_method/reference_fbar_out_1_nu_0p495_new.csv};
+
+\addplot[red!80!yellow, line width=1.5pt, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]
+    {data/new_method/restart_fbar_out_1_nu_0p495_new.csv};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time for old and new restart methods at $\nu = 0.30$ (top row) and $\nu = 0.495$ (bottom row). Blue solid: reference run. Red dashed: restarted run. Legend shown in top-left panel applies to all panels.}
+\label{fig:elastic_energy_methods}
+\end{figure}

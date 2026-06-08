@@ -1,0 +1,97 @@
+% Include in main.tex with: \input{figures/fbar_comparison}
+% Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
+%                       \usepgfplotslibrary{groupplots}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=1.5cm,
+    },
+    width=0.42\textwidth,
+    height=0.42\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xmin=0, xmax=2.5,
+    legend style={font=\small, cells={anchor=west}},
+    legend pos=north west,
+]
+
+%% --- Left panel: integrated effective plastic strain ---
+\nextgroupplot[
+    ylabel={$\displaystyle\int_\Omega \varepsilon^p \, dV$},
+    xlabel={Time},
+]
+
+% Reference runs (solid)
+\addplot[blue,   thick, solid]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_1.csv};
+\addlegendentry{Ref $n=1$}
+
+\addplot[red,    thick, solid]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_2.csv};
+\addlegendentry{Ref $n=2$}
+
+\addplot[green!70!black, thick, solid]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_4.csv};
+\addlegendentry{Ref $n=4$}
+
+\addplot[orange!90!black, thick, solid]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_8.csv};
+\addlegendentry{Ref $n=8$}
+
+% Restart runs (dashed, same colors; restrict x skips the init row at t=1.5)
+\addplot[blue,   thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_1.csv};
+\addlegendentry{Restart $n=1$}
+
+\addplot[red,    thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_2.csv};
+\addlegendentry{Restart $n=2$}
+
+\addplot[green!70!black, thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_4.csv};
+\addlegendentry{Restart $n=4$}
+
+% Vertical marker at restart point
+\draw[black!50, dashed] (axis cs:1.5,0) -- (axis cs:1.5,10);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.45,1.5) {restart};
+
+%% --- Right panel: integrated elastic energy ---
+\nextgroupplot[
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xlabel={Time},
+    yticklabel pos=right,
+]
+
+\addplot[blue,   thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_1.csv};
+
+\addplot[red,    thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_2.csv};
+
+\addplot[green!70!black, thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_4.csv};
+
+\addplot[orange!90!black, thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_8.csv};
+
+\addplot[blue,   thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_1.csv};
+
+\addplot[red,    thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_2.csv};
+
+\addplot[green!70!black, thick, dashed, restrict x to domain=1.501:100]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_4.csv};
+
+\draw[black!50, dashed] (axis cs:1.5,0) -- (axis cs:1.5,400);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.45,50) {restart};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Integrated effective plastic strain (left) and integrated elastic energy (right) vs.\ time for reference and restarted simulations with $n$ processors. Solid lines: reference runs ($t \in [0, 1.5]$). Dashed lines: restart continuations ($t > 1.5$). Colors match processor counts across both panels.}
+\label{fig:fbar_comparison}
+\end{figure}
