@@ -23,27 +23,27 @@
 %% --- Left panel: method 1 (old) ---
 \nextgroupplot[
     title={Method \#1},
-    ylabel={Relative error at target},
+    ylabel={Relative error at first step},
     ymax=6e-3
 ]
 \addplot[only marks, mark=*, mark size=3pt, red] table[
     col sep=comma,
     x=fbar_pressure_correction_max_ref,
-    y=rel_err_target,
+    y=rel_err_first,
     meta=nu,
 ]{data/nu_sweep/strength/fbar_strength_results_elastic_quasi_old.csv};
 
 %% --- Right panel: method 2 (new) ---
 \nextgroupplot[
     title={Method \#2},
-    ylabel={Relative error at target},
+    ylabel={Relative error at first step},
     yticklabel pos=right,
     ymax=2e-10
 ]
 \addplot[only marks, mark=*, mark size=3pt, blue] table[
     col sep=comma,
     x=fbar_pressure_correction_max_ref,
-    y=rel_err_target,
+    y=rel_err_first,
     meta=nu,
 ]{data/nu_sweep/strength/fbar_strength_results_elastic_quasi_new.csv};
 

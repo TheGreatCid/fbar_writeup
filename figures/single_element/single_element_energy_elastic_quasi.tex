@@ -1,0 +1,40 @@
+% Include with: \input{figures/single_element/single_element_energy_elastic_quasi}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.6cm},
+    width=0.46\textwidth,
+    height=0.46\textwidth,
+    grid=major, grid style={gray!25},
+    tick align=outside,
+    xlabel={Time},
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xmin=0, xmax=1.25,
+    legend style={font=\scriptsize, cells={anchor=west}},
+    legend pos=north west,
+]
+
+%% --- Left: Method #1 (old) ---
+\nextgroupplot[title={Method \#1}]
+\addplot[blue,             line width=2pt, solid] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/old/pull_test_out_nu_0p30_old.csv};   \addlegendentry{$\nu=0.30$}
+\addplot[violet,           line width=2pt, solid] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/old/pull_test_out_nu_0p499_old.csv};  \addlegendentry{$\nu=0.499$}
+\addplot[blue,          thick, dashed] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/old/pull_test_restart_out_nu_0p30_old.csv};
+\addplot[violet,        thick, dashed] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/old/pull_test_restart_out_nu_0p499_old.csv};
+\draw[black!50, dashed] (axis cs:1.0,0) -- (axis cs:1.0,0.012);
+\node[above, font=\tiny, rotate=90] at (axis cs:0.97,0.002) {restart};
+
+%% --- Right: Method #2 (new) ---
+\nextgroupplot[title={Method \#2}, yticklabel pos=right]
+\addplot[blue,             line width=2pt, solid] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/new/pull_test_out_nu_0p30_new.csv};
+\addplot[violet,           line width=2pt, solid] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/new/pull_test_out_nu_0p499_new.csv};
+\addplot[blue,          thick, dashed] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/new/pull_test_restart_out_nu_0p30_new.csv};
+\addplot[violet,        thick, dashed] table[col sep=comma, x=time, y=psie_active_int]{data/single_element/elastic_qs/new/pull_test_restart_out_nu_0p499_new.csv};
+\draw[black!50, dashed] (axis cs:1.0,0) -- (axis cs:1.0,0.012);
+\node[above, font=\tiny, rotate=90] at (axis cs:0.97,0.002) {restart};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Single element, quasi-static-elastic: Integrated elastic energy vs.\ time for method \#1 (left) and method \#2 (right). Solid lines: reference. Dashed lines: restart. Legend in left panel applies to both.}
+\label{fig:se_energy_elastic_qs}
+\end{figure}

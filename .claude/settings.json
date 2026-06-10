@@ -4,7 +4,11 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(grep -E '\\\\.\\(aux|fdb_latexmk|fls|log|synctex\\\\.gz|pdf\\)$')",
-      "Bash(pdftoppm -png -f 6 -l 6 -r 130 main.pdf /tmp/qe_p6)"
+      "Bash(pdftoppm -png -f 6 -l 6 -r 130 main.pdf /tmp/qe_p6)",
+      "Bash(grep -v \"^--$\")",
+      "Bash(sed -i -e 's/\\(axis cs:1\\\\.0,0\\) -- \\(axis cs:1\\\\.0,1\\);/\\(axis cs:1.0,0\\) -- \\(axis cs:1.0,0.012\\);/' -e 's/\\(axis cs:0\\\\.97,0\\\\.002\\) {restart};/\\(axis cs:0.97,0.002\\) {restart};/' /home/detorre/projects/fbar_writeup/figures/single_element/single_element_energy_elastic.tex /home/detorre/projects/fbar_writeup/figures/single_element/single_element_energy_elastic_quasi.tex)",
+      "Bash(sed -i -e 's/\\(axis cs:1\\\\.0,0\\) -- \\(axis cs:1\\\\.0,5\\);/\\(axis cs:1.0,0\\) -- \\(axis cs:1.0,0.004\\);/' -e 's/\\(axis cs:0\\\\.97,0\\\\.5\\) {restart};/\\(axis cs:0.97,0.0005\\) {restart};/' /home/detorre/projects/fbar_writeup/figures/single_element/single_element_energy_plastic.tex /home/detorre/projects/fbar_writeup/figures/single_element/single_element_energy_plastic_quasi.tex)",
+      "Bash(xargs sed -i 's/y=rel_err_target/y=rel_err_first/g; s/ylabel={Relative error at target}/ylabel={Relative error at first step}/g')"
     ]
   }
 }
