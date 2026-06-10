@@ -1,4 +1,4 @@
-% Include in main.tex with: \input{figures/elastic_energy_methods}
+% Include in main.tex with: \input{figures/elastic_energy_quasi_plastic}
 % Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
 %                       \usepgfplotslibrary{groupplots}
 \begin{figure}[htbp]
@@ -20,20 +20,20 @@
     xmin=0, xmax=2.0,
 ]
 
-%% --- Row 1, Left: nu=0.30, old method ---
+%% --- Row 1, Left: nu=0.30, method 1 (old) ---
 \nextgroupplot[title={Method \#1, $\nu = 0.30$}]
 
 \addplot[blue, line width=2pt, solid]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/old_method/reference_fbar_out_1_nu_0p30_old.csv};
+    {data/nu_sweep/old_method_quasi/reference_fbar_out_1_nu_0p30_old.csv};
 \addlegendentry{Reference}
 
 \addplot[red!80!yellow, line width=1.5pt, dashed]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/old_method/restart_fbar_out_1_nu_0p30_old.csv};
+    {data/nu_sweep/old_method_quasi/restart_fbar_out_1_nu_0p30_old.csv};
 \addlegendentry{Restart}
 
-%% --- Row 1, Right: nu=0.30, new method ---
+%% --- Row 1, Right: nu=0.30, method 2 (new) ---
 \nextgroupplot[
     title={Method \#2, $\nu = 0.30$},
     yticklabel pos=right,
@@ -41,24 +41,24 @@
 
 \addplot[blue, line width=2pt, solid]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/old_method/reference_fbar_out_1_nu_0p30_old.csv};
+    {data/nu_sweep/new_method_quasi/reference_fbar_out_1_nu_0p30_new.csv};
 
 \addplot[red!80!yellow, line width=1.5pt, dashed]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/new_method/restart_fbar_out_1_nu_0p30_new.csv};
+    {data/nu_sweep/new_method_quasi/restart_fbar_out_1_nu_0p30_new.csv};
 
-%% --- Row 2, Left: nu=0.495, old method ---
+%% --- Row 2, Left: nu=0.495, method 1 (old) ---
 \nextgroupplot[title={Method \#1, $\nu = 0.495$}]
 
 \addplot[blue, line width=2pt, solid]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/old_method/reference_fbar_out_1_nu_0p495_old.csv};
+    {data/nu_sweep/old_method_quasi/reference_fbar_out_1_nu_0p495_old.csv};
 
 \addplot[red!80!yellow, line width=1.5pt, dashed]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/old_method/restart_fbar_out_1_nu_0p495_old.csv};
+    {data/nu_sweep/old_method_quasi/restart_fbar_out_1_nu_0p495_old.csv};
 
-%% --- Row 2, Right: nu=0.495, new method ---
+%% --- Row 2, Right: nu=0.495, method 2 (new) ---
 \nextgroupplot[
     title={Method \#2, $\nu = 0.495$},
     yticklabel pos=right,
@@ -66,14 +66,14 @@
 
 \addplot[blue, line width=2pt, solid]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/new_method/reference_fbar_out_1_nu_0p495_new.csv};
+    {data/nu_sweep/new_method_quasi/reference_fbar_out_1_nu_0p495_new.csv};
 
 \addplot[red!80!yellow, line width=1.5pt, dashed]
     table[col sep=comma, x=time, y=psie_corr_active_int]
-    {data/nu_sweep/new_method/restart_fbar_out_1_nu_0p495_new.csv};
+    {data/nu_sweep/new_method_quasi/restart_fbar_out_1_nu_0p495_new.csv};
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time for method \#1 and method \#2 at $\nu = 0.30$ (top row) and $\nu = 0.495$ (bottom row). Blue solid: reference run. Red dashed: restarted run. Legend shown in top-left panel applies to all panels.}
-\label{fig:elastic_energy_methods}
+\caption{Quasi-static plastic case: Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time for method \#1 and method \#2 at $\nu = 0.30$ (top row) and $\nu = 0.495$ (bottom row). Blue solid: reference run. Red dashed: restarted run. Legend shown in top-left panel applies to all panels.}
+\label{fig:elastic_energy_quasi_plastic}
 \end{figure}

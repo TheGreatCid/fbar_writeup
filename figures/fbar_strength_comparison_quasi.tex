@@ -20,10 +20,23 @@
     point meta=explicit symbolic,
 ]
 
-%% --- Left panel: new method ---
+%% --- Left panel: method 1 (old) ---
 \nextgroupplot[
-    title={New method},
+    title={Method \#1},
     ylabel={Relative error},
+]
+\addplot[only marks, mark=*, mark size=3pt, red] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_ref,
+    y=rel_err_target,
+    meta=nu,
+]{data/nu_sweep/strength/fbar_strength_results_quasi_old.csv};
+
+%% --- Right panel: method 2 (new) ---
+\nextgroupplot[
+    title={Method \#2},
+    ylabel={Relative error},
+    yticklabel pos=right,
     ymax=0.003
 ]
 \addplot[only marks, mark=*, mark size=3pt, blue] table[
@@ -31,23 +44,10 @@
     x=fbar_pressure_correction_max_ref,
     y=rel_err_target,
     meta=nu,
-]{data/strength/fbar_strength_results_quasi_new.csv};
-
-%% --- Right panel: old method ---
-\nextgroupplot[
-    title={Old method},
-    ylabel={Relative error},
-    yticklabel pos=right,
-]
-\addplot[only marks, mark=*, mark size=3pt, red] table[
-    col sep=comma,
-    x=fbar_pressure_correction_max_ref,
-    y=rel_err_target,
-    meta=nu,
-]{data/strength/fbar_strength_results_quasi_old.csv};
+]{data/nu_sweep/strength/fbar_strength_results_quasi_new.csv};
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{Quasi-static simulation: Relative error at target vs.\ maximum F-bar pressure correction for the new method (left) and old method (right), with Poisson's ratio $\nu$ labelled at each point.}
+\caption{Quasi-static simulation: Relative error at target vs.\ maximum F-bar pressure correction for method \#1 (left) and method \#2 (right), with Poisson's ratio $\nu$ labelled at each point.}
 \label{fig:fbar_strength_comparison_quasi}
 \end{figure}

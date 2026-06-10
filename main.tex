@@ -111,9 +111,7 @@ The following boundary conditions are applied to force regions of artificial sti
     U_z &= 0 \quad \text{on } \{Z = 0, Z = L\}.\\
 \end{align*}
 
-The boundary conditions lead a single free surface at $X=L$. 
-
-The following simulations modify the amount of applied correction varying the poissons ratio, \\$\nu = \{0.3,0.4.0.45,0.48,0.49,0.459\}$, with the most correction occuring at $\nu=0.459$. The difference between the uncorrected and volumetric Cauchy stress is used as the metric for how much correction occurs:
+The boundary conditions lead a single free surface at $X=L$. The following simulations modify the amount of applied correction varying the poissons ratio, \\$\nu = \{0.3,0.4.0.45,0.48,0.49,0.459\}$, with the most correction occuring at $\nu=0.459$. The difference between the uncorrected and volumetric Cauchy stress is used as the metric for how much correction occurs:
 \begin{equation}
     P_{\text{diff}} = K(\bar{J}-J),
 \end{equation}
@@ -123,22 +121,41 @@ where $K$ is the bulk modulus, J is the Jacobian, and $\bar{J}$ is the volume av
 \end{equation}
 where $\psi^e$ is the elastic energy and $t_r$ is the time of recovery. The 0th simulation is ran for an extra step into order to compute fields at $t_r+\Delta t$. The restarted simulation uses the field data at $t=t_r$.
 
-Figure~\ref{fig:fbar_strength_comparison_quasi} shows the comparison in the quasi-static case. 
+Several different scenarios are considered for the comparison:
+\begin{itemize}
+    \item Quasi-static + elastic: Figures~\ref{fig:fbar_strength_comparison_elastic_quasi},~\ref{fig:elastic_energy_quasi_elastic}
+    \item Dynamic + elastic: Figures:~\ref{fig:fbar_strength_comparison_elastic},\ref{fig:elastic_energy_dynamic_elastic}
+    \item Quasi-static + elastic + plastic: Figures~\ref{fig:fbar_strength_comparison_quasi},\ref{fig:elastic_energy_quasi_elastic}
+    \item Dynamic + elastic + plastic: Figures~\ref{fig:fbar_strength_comparison},\ref{fig:fbar_strength_comparison}
+\end{itemize}
 
-Figure~\ref{fig:elastic_energy_dynamic_elastic} shows the comparison for a dynamic fully elastic case. 
 % \input{figures/fbar_comparison}
 
 % \input{figures/fbar_strength}
-\input{figures/fbar_strength_comparison_quasi.tex}
 
-\input{figures/fbar_strength_comparison}
+\input{figures/fbar_strength_comparison_elastic_quasi}
+\input{figures/elastic_energy_quasi_elastic}
 
 \input{figures/fbar_strength_comparison_elastic}
-
-\input{figures/elastic_energy_methods}
-
 \input{figures/elastic_energy_dynamic_elastic}
 
-\input{figures/elastic_energy_quasi_elastic}
+\input{figures/fbar_strength_comparison_quasi.tex}
+\input{figures/elastic_energy_quasi_plastic}
+
+\input{figures/fbar_strength_comparison}
+\input{figures/elastic_energy_methods}
+
+\FloatBarrier{}
+\subsection{BC sweep}
+
+\input{figures/bc_strength_comparison_quasi_elastic}
+\input{figures/bc_elastic_energy_quasi_elastic}
+
+\input{figures/bc_strength_comparison_elastic}
+\input{figures/bc_elastic_energy_elastic}
+
+\subsection{Single element test}
+
+\input{figures/single_element/single_element_error_elastic_quasi}
 
 \end{document}

@@ -1,0 +1,71 @@
+% Include in main.tex with: \input{figures/bc_elastic_energy_quasi_elastic}
+% Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
+%                       \usepgfplotslibrary{groupplots}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=1.6cm,
+    },
+    width=0.46\textwidth,
+    height=0.46\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xlabel={Time},
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xmin=1.5, xmax=2.0,
+    legend style={font=\scriptsize, cells={anchor=west}},
+    legend pos=north west,
+]
+
+%% --- Left panel: method 1 (old) ---
+\nextgroupplot[title={Method \#1}]
+
+\addplot[blue,           thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/old_method_elastic/reference_fbar_out_1_bc_uniaxial_old.csv};
+\addlegendentry{Uniaxial}
+
+\addplot[red,            thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/old_method_elastic/reference_fbar_out_1_bc_constrained_old.csv};
+\addlegendentry{Constrained}
+
+\addplot[blue,           thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/old_method_elastic/restart_fbar_out_1_bc_uniaxial_old.csv};
+
+\addplot[red,            thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/old_method_elastic/restart_fbar_out_1_bc_constrained_old.csv};
+
+% Vertical marker at restart point
+\draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,230000);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.55,30000) {restart};
+
+%% --- Right panel: method 2 (new) ---
+\nextgroupplot[
+    title={Method \#2},
+    yticklabel pos=right,
+]
+
+\addplot[blue,           thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/new_method_elastic/reference_fbar_out_1_bc_uniaxial_new.csv};
+
+\addplot[red,            thick, solid]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/new_method_elastic/reference_fbar_out_1_bc_constrained_new.csv};
+
+
+\addplot[blue,           thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/new_method_elastic/restart_fbar_out_1_bc_uniaxial_new.csv};
+
+\addplot[red,            thick, dashed]
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/bc_sweep/new_method_elastic/restart_fbar_out_1_bc_constrained_new.csv};
+
+\draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,230000);
+\node[above, font=\tiny, rotate=90] at (axis cs:1.55,30000) {restart};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{BC sweep, dynamic elastic case: Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time near the restart point for method \#1 (left) and method \#2 (right), for the three boundary-condition cases. Solid lines: reference runs. Dashed lines: restart continuations (same color as the corresponding reference, legend in the left panel applies to both panels).}
+\label{fig:bc_elastic_energy_quasi_elastic}
+\end{figure}

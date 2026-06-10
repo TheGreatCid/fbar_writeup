@@ -22,49 +22,49 @@
 ]
 
 %% --- Left panel: old method ---
-\nextgroupplot[title={Old method}]
+\nextgroupplot[title={Method \#1}]
 
 \addplot[blue,             thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p30_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p30_old.csv};
 \addlegendentry{$\nu = 0.30$}
 
 \addplot[red,              thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p40_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p40_old.csv};
 \addlegendentry{$\nu = 0.40$}
 
 \addplot[green!70!black,   thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p45_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p45_old.csv};
 \addlegendentry{$\nu = 0.45$}
 
 \addplot[orange!90!black,  thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p48_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p48_old.csv};
 \addlegendentry{$\nu = 0.48$}
 
 \addplot[violet,           thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p49_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p49_old.csv};
 \addlegendentry{$\nu = 0.49$}
 
 \addplot[brown!70!black,   thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p495_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/reference_fbar_out_1_nu_0p495_old.csv};
 \addlegendentry{$\nu = 0.495$}
 
 \addplot[blue,             thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p30_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p30_old.csv};
 
 \addplot[red,              thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p40_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p40_old.csv};
 
 \addplot[green!70!black,   thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p45_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p45_old.csv};
 
 \addplot[orange!90!black,  thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p48_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p48_old.csv};
 
 \addplot[violet,           thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p49_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p49_old.csv};
 
 \addplot[brown!70!black,   thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p495_old.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/old_method_dynamic_elastic/restart_fbar_out_1_nu_0p495_old.csv};
 
 % Vertical marker at restart point
 \draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,45000);
@@ -72,51 +72,51 @@
 
 %% --- Right panel: new method ---
 \nextgroupplot[
-    title={New method},
+    title={Method \#2},
     yticklabel pos=right,
 ]
 
 \addplot[blue,             thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p30_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p30_new.csv};
 
 \addplot[red,              thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p40_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p40_new.csv};
 
 \addplot[green!70!black,   thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p45_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p45_new.csv};
 
 \addplot[orange!90!black,  thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p48_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p48_new.csv};
 
 \addplot[violet,           thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p49_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p49_new.csv};
 
 \addplot[brown!70!black,   thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p495_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/reference_fbar_out_1_nu_0p495_new.csv};
 
 \addplot[blue,             thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p30_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p30_new.csv};
 
 \addplot[red,              thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p40_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p40_new.csv};
 
 \addplot[green!70!black,   thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p45_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p45_new.csv};
 
 \addplot[orange!90!black,  thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p48_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p48_new.csv};
 
 \addplot[violet,           thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p49_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p49_new.csv};
 
 \addplot[brown!70!black,   thick, dashed]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p495_new.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/new_method_dynamic_elastic/restart_fbar_out_1_nu_0p495_new.csv};
 
 \draw[black!50, dashed] (axis cs:1.6,0) -- (axis cs:1.6,45000);
 \node[above, font=\tiny, rotate=90] at (axis cs:1.55,5000) {restart};
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time near the restart point for the old method (left) and new method (right) of the dynamic-elastic simulations, for varying Poisson's ratio $\nu$. Solid lines: reference runs. Dashed lines: restart continuations (same color as the corresponding reference, $\nu$ legend in the left panel applies to both panels).}
+\caption{Integrated elastic energy $\int_\Omega \psi_e \, dV$ vs.\ time near the restart point for method \#1 (left) and method \#2 (right) of the dynamic-elastic simulations, for varying Poisson's ratio $\nu$. Solid lines: reference runs. Dashed lines: restart continuations (same color as the corresponding reference, $\nu$ legend in the left panel applies to both panels).}
 \label{fig:elastic_energy_dynamic_elastic}
 \end{figure}

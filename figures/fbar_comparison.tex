@@ -27,32 +27,32 @@
 
 % Reference runs (solid)
 \addplot[blue,   thick, solid]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_1.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/reference_fbar_out_1.csv};
 \addlegendentry{Ref $n=1$}
 
 \addplot[red,    thick, solid]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_2.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/reference_fbar_out_2.csv};
 \addlegendentry{Ref $n=2$}
 
 \addplot[green!70!black, thick, solid]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_4.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/reference_fbar_out_4.csv};
 \addlegendentry{Ref $n=4$}
 
 \addplot[orange!90!black, thick, solid]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/reference_fbar_out_8.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/reference_fbar_out_8.csv};
 \addlegendentry{Ref $n=8$}
 
 % Restart runs (dashed, same colors; restrict x skips the init row at t=1.5)
 \addplot[blue,   thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_1.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/restart_fbar_out_1.csv};
 \addlegendentry{Restart $n=1$}
 
 \addplot[red,    thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_2.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/restart_fbar_out_2.csv};
 \addlegendentry{Restart $n=2$}
 
 \addplot[green!70!black, thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=ep_int]{data/parallel/restart_fbar_out_4.csv};
+    table[col sep=comma, x=time, y=ep_int]{data/nu_sweep/parallel/restart_fbar_out_4.csv};
 \addlegendentry{Restart $n=4$}
 
 % Vertical marker at restart point
@@ -67,25 +67,25 @@
 ]
 
 \addplot[blue,   thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_1.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/reference_fbar_out_1.csv};
 
 \addplot[red,    thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_2.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/reference_fbar_out_2.csv};
 
 \addplot[green!70!black, thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_4.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/reference_fbar_out_4.csv};
 
 \addplot[orange!90!black, thick, solid]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/reference_fbar_out_8.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/reference_fbar_out_8.csv};
 
 \addplot[blue,   thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_1.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/restart_fbar_out_1.csv};
 
 \addplot[red,    thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_2.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/restart_fbar_out_2.csv};
 
 \addplot[green!70!black, thick, dashed, restrict x to domain=1.501:100]
-    table[col sep=comma, x=time, y=psie_corr_active_int]{data/parallel/restart_fbar_out_4.csv};
+    table[col sep=comma, x=time, y=psie_corr_active_int]{data/nu_sweep/parallel/restart_fbar_out_4.csv};
 
 \draw[black!50, dashed] (axis cs:1.5,0) -- (axis cs:1.5,400);
 \node[above, font=\tiny, rotate=90] at (axis cs:1.45,50) {restart};

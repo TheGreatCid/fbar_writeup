@@ -1,4 +1,4 @@
-% Include in main.tex with: \input{figures/fbar_strength_comparison}
+% Include in main.tex with: \input{figures/bc_strength_comparison_quasi_elastic}
 % Requires in preamble: \usepackage{pgfplots}, \pgfplotsset{compat=1.18}
 %                       \usepgfplotslibrary{groupplots}
 \begin{figure}[htbp]
@@ -24,31 +24,31 @@
 \nextgroupplot[
     title={Method \#1},
     ylabel={Relative error at target},
-    ymax=0.7
+    ymax=6e-3
 ]
 \addplot[only marks, mark=*, mark size=3pt, red] table[
     col sep=comma,
     x=fbar_pressure_correction_max_ref,
     y=rel_err_target,
-    meta=nu,
-]{data/nu_sweep/strength/fbar_strength_results_old.csv};
+    meta=bc_case,
+]{data/bc_sweep/strength/bc_sweep_results_elastic_old.csv};
 
 %% --- Right panel: method 2 (new) ---
 \nextgroupplot[
     title={Method \#2},
     ylabel={Relative error at target},
     yticklabel pos=right,
-    ymax=0.7
+    ymax=2e-10
 ]
 \addplot[only marks, mark=*, mark size=3pt, blue] table[
     col sep=comma,
     x=fbar_pressure_correction_max_ref,
     y=rel_err_target,
-    meta=nu,
-]{data/nu_sweep/strength/fbar_strength_results_new.csv};
+    meta=bc_case,
+]{data/bc_sweep/strength/bc_sweep_results_elastic_new.csv};
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{Dynamic simulation - Relative error at target vs.\ maximum F-bar pressure correction for method \#1 (left) and method \#2 (right), with Poisson's ratio $\nu$ labelled at each point.}
-\label{fig:fbar_strength_comparison}
+\caption{BC sweep, dynamic-elastic case: Relative error at target vs.\ maximum F-bar pressure correction for method \#1 (left) and method \#2 (right), with the boundary-condition case labelled at each point.}
+\label{fig:bc_strength_comparison_quasi_elastic}
 \end{figure}
