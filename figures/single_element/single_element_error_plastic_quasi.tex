@@ -16,6 +16,7 @@
     tick align=outside,
     xlabel={Max F-bar pressure correction (ref)},
     xmode=log,
+    ymode=log,
     nodes near coords,
     nodes near coords style={font=\small, anchor=south west},
     point meta=explicit symbolic,
@@ -25,8 +26,7 @@
 \nextgroupplot[
     title={Method \#1},
     ylabel={Relative error at first step},
-    ymax=0.01,
-    ymin=0
+    % ymax=0.01,
 ]
 \addplot[only marks, mark=*, mark size=3pt, red] table[
     col sep=comma,
@@ -35,13 +35,19 @@
     meta=nu
 ]{data/single_element/plastic_qs/error/nu_sweep_results_old.csv};
 
+\addplot[only marks, mark=*, mark size=3pt, blue] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_ref,
+    y=rel_err_first,
+    meta=nu
+]{data/single_element/plastic_qs/error/nu_sweep_results_new.csv};
+
 %% --- Right panel: method 2 (new) ---
 \nextgroupplot[
     title={Method \#2},
     ylabel={Relative error at first step},
     yticklabel pos=right,
     ymax=0.01,
-    ymin=0
 ]
 \addplot[only marks, mark=*, mark size=3pt, blue] table[
     col sep=comma,
