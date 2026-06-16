@@ -1,0 +1,141 @@
+\FloatBarrier{}
+\section{Comparison}
+Now we compare the two methods.
+\subsection{Single element test: $\nu$ sweep}
+
+We begin with a single element test. First on a third-order HEX8 element of dimension $L\times{}L\times L{}$. The boundary conditions are the following,
+
+\begin{align*}
+    U_y^{(i)} &= 0.2\,(t/T)\,X_0^{(i)} \quad \text{for each node } i \in \{Y = L\}, \\
+    U_y &= 0 \quad \text{on } \{Y = 0\}, \\
+    U_x &= 0 \quad \text{on } \{X = 0\}, \\
+    U_z &= 0 \quad \text{on } \{Z = 0, Z = L\}.\\
+\end{align*}
+
+The boundary condition at $Y=L$ is applied per node, and leads the $\nabla U$ field to vary per QP. As such, $J$ and $F$ vary per QP, allow for F-bar to switch on. Figure~\ref{fig:hex8} shows the initial and final configurations of the HEX8 element.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{pictures/HEX8_initial.png}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{pictures/HEX8_final.png}
+    \end{subfigure}
+    \caption{Initial~(left) and final~(right) configurations of the HEX8 element.}
+    \label{fig:hex8}
+\end{figure}
+
+Several cases are considered:
+\begin{itemize}
+    \item Quasi-static + Elasticity
+    \item Dynamics + Elasticity
+    \item Quasi-static + Elasticity + Plasticity
+    \item Dynamics + Elasticity + Plasticity
+\end{itemize}
+
+The difference between the uncorrected and volumetric Cauchy stress is used as the metric for the amount of correction present:
+\begin{equation}
+    P_{\text{diff}} = K(\bar{J}-J),
+\end{equation}
+where $K$ is the bulk modulus, J is the Jacobian, and $\bar{J}$ is the volume averaged Jacobian. The relative error is calculated as
+\begin{equation}
+    \left[\frac{\int_{\Omega_1}\psi^e_1-\int_{\Omega_0}\psi^e_0}{\int_{\Omega_0}\psi^e_0}\right]_{t=t_r+\Delta t},
+\end{equation}
+where $\psi^e$ is the elastic energy and $t_r$ is the time of recovery. The 0th simulation is ran for an extra step into order to compute fields at $t_r+\Delta t$. The restarted simulation uses the field data at $t=t_r$.
+
+Figure~\ref{fig:se_strength_comparison_quasi_elastic} compares the initial relative error for the quasi-static elastic case. Clearly, method \#2 performs better than method \#1, with the error of method \#1 increasing with the amount of pressure correction present. The error of method \#2 is on the order of machine precision. Figure~\ref{fig:se_energy_elastic_qs} reflects this pattern through the plotting of the total elastic energy in the sample over time. Method \#1 shows a clear deviation in the total elastic at the restart, even if small. No visible in the restart is seen when using method \#2.
+
+Figure~\ref{fig:se_strength_comparison_elastic} compares the initial relative error for the dynamic elastic case. It is clear that method \#2 performs better than method \#1, but the error is no longer on the order of machine precision, and clearly increases as the amount of correction present increases.
+
+\input{figures/single_element/single_element_error_elastic_quasi}
+\input{figures/single_element/single_element_energy_elastic_quasi}
+
+\input{figures/single_element/single_element_error_elastic}
+\input{figures/single_element/single_element_energy_elastic}
+
+\input{figures/single_element/single_element_error_plastic_quasi}
+\input{figures/single_element/single_element_energy_plastic_quasi}
+
+\input{figures/single_element/single_element_error_plastic}
+\input{figures/single_element/single_element_energy_plastic}
+
+\FloatBarrier{}
+
+
+
+\subsection{Multi-element test}
+Figure~\ref{fig:domain} shows the domain, which an $L\times{}L\times L{}$ cube consisting of TET10 elements, where $L=3$. The elasticity model compressible Neo-Hookean hyper-elasticity and the plasticity model is $J_2$ plasticity with Johnson-Cook hardening/softening.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.25\textwidth]{pictures/mesh.png}
+    \caption{Domain.}
+    \label{fig:domain}
+\end{figure}
+
+The following boundary conditions are applied to force regions of artificial stiffness,
+
+\begin{align*}
+    U_y &= t \quad \text{on } \{Y = L\}, \\
+    U_y &= 0 \quad \text{on } \{Y = 0\}, \\
+    U_x &= 0 \quad \text{on } \{X = 0, Y = L\}, \\
+    U_z &= 0 \quad \text{on } \{Z = 0, Z = L\}.\\
+\end{align*}
+
+The boundary conditions lead a single free surface at $X=L$. The following simulations modify the amount of applied correction varying the poissons ratio, \\$\nu = \{0.3,0.4.0.45,0.48,0.49,0.459\}$, with the most correction occurring at $\nu=0.459$. The difference between the uncorrected and volumetric Cauchy stress is used as the metric for how much correction occurs:
+\begin{equation}
+    P_{\text{diff}} = K(\bar{J}-J),
+\end{equation}
+where $K$ is the bulk modulus, J is the Jacobian, and $\bar{J}$ is the volume averaged Jacobian. The relative error is calculated as
+\begin{equation}
+    \left[\frac{\int_{\Omega_1}\psi^e_1-\int_{\Omega_0}\psi^e_0}{\int_{\Omega_0}\psi^e_0}\right]_{t=t_r+\Delta t},
+\end{equation}
+where $\psi^e$ is the elastic energy and $t_r$ is the time of recovery. The 0th simulation is ran for an extra step into order to compute fields at $t_r+\Delta t$. The restarted simulation uses the field data at $t=t_r$.
+
+Several different scenarios are considered for the comparison:
+\begin{itemize}
+    \item Quasi-static + elastic: Figures~\ref{fig:fbar_strength_comparison_elastic_quasi},~\ref{fig:elastic_energy_quasi_elastic}
+    \item Dynamic + elastic: Figures:~\ref{fig:fbar_strength_comparison_elastic},\ref{fig:elastic_energy_dynamic_elastic}
+    \item Quasi-static + elastic + plastic: Figures~\ref{fig:fbar_strength_comparison_quasi},\ref{fig:elastic_energy_quasi_elastic}
+    \item Dynamic + elastic + plastic: Figures~\ref{fig:fbar_strength_comparison},\ref{fig:fbar_strength_comparison}
+\end{itemize}
+
+% \input{figures/fbar_comparison}
+
+% \input{figures/fbar_strength}
+
+\input{figures/fbar_strength_comparison_elastic_quasi}
+\input{figures/elastic_energy_quasi_elastic}
+
+\input{figures/fbar_strength_comparison_elastic}
+\input{figures/elastic_energy_dynamic_elastic}
+
+\input{figures/fbar_strength_comparison_quasi.tex}
+\input{figures/elastic_energy_quasi_plastic}
+
+\input{figures/fbar_strength_comparison}
+\input{figures/elastic_energy_methods}
+
+\FloatBarrier{}
+\newpage{}
+\subsubsection{Dump time sweep: dynamic elastic}
+
+Figure~\ref{fig:dump_time_sweep_elastic_dynamic} shows how the relative error at the first restart step varies with the amount of F-bar correction present at the dump time, as the dump time is swept. Figure~\ref{fig:dump_time_sweep_energy_elastic_dynamic} shows the integrated elastic energy over time for three representative dump times ($t_d = 0.8, 2.4, 4.0$).
+
+\input{figures/multi_hex8/dump_time_sweep_elastic_dynamic}
+\input{figures/multi_hex8/dump_time_sweep_energy_elastic_dynamic}
+
+\FloatBarrier{}
+\newpage{}
+\subsection{BC sweep}
+
+\input{figures/bc_strength_comparison_quasi_elastic}
+\input{figures/bc_elastic_energy_quasi_elastic}
+
+\input{figures/bc_strength_comparison_elastic}
+\input{figures/bc_elastic_energy_elastic}
+
+\FloatBarrier{}

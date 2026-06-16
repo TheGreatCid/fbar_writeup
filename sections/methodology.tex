@@ -1,0 +1,58 @@
+\section{Methodology}
+
+\subsection{1st method}
+Here we assume that the non-volume averaged deformation gradient should be mapped
+    \begin{align}
+        F^T_0 &= \frac{\partial x_0}{\partial X_0}\\
+        \bar{J_0} &= \frac{1}{V_0}\int_{\Omega_0}V_0\det{F^T_0}d V\\
+        \bar{F}^T_0 &= \left(\frac{\bar{J}_0}{\det{F^T_0}}\right)^{\frac{1}{3}}\hl{F^T_0}
+    \end{align}
+Note that $\bar{F}^T_0$ is what is seen by the constitutive equations.
+After mapping, where $F^T_0 \rightarrow F^T_{0_m}$. Volume averaging is reapplied at initialization:
+\begin{align}
+    \bar{J}_{0_m} &= \frac{1}{V_1}\int_{\Omega_1}V_1\det \hl{F^T_{0_m}} dV\\
+    \bar{F}^T_{0_m} &= \left(\frac{\bar{J}_{0_m}}{\det{\hl{F^T_{0_m}}}}\right)^\frac{1}{3}\hl{F^T_{0_m}}
+\end{align}
+
+Then the current incremental deformation gradient is solved and averaged, followed by the calculation of the deformation gradient
+\begin{align}
+    F_1 &= \frac{\partial x_1}{X_0}\\
+ \bar{J}_{1} &= \frac{1}{V_1}\int_{\Omega_1}V_1\det F_1 dV\\
+    \bar{F_1} &= \left(\frac{\bar{J}_{1}}{\det{F_1}}\right)^\frac{1}{3}F_1
+\end{align}
+And the totaling of the gradient
+\begin{align}
+    \bar{F}_1^T = \bar{F}_1\bar{F}_{0_m}
+\end{align}
+If expanded out,
+\begin{align}
+    \bar{F}_1^T = \bar{F_1}\left[\left(\left(\frac{1}{V_1}\int_{\Omega_1}V_1\det{F^T_{0_m}}dV\right)\left(\det{F^T_{0_m}}\right)^{-1}\right)^{\frac{1}{3}}F^T_{0_m}\right]
+\end{align}
+
+\subsection{Method 2}
+In this method, the 0th step deformation gradient is taken as a whole.
+    \begin{align}
+        F^T_0 &= \frac{\partial x_0}{\partial X_0}\\
+        \bar{J_0} &= \frac{1}{V_0}\int_{\Omega_0}V_0\det{F^T_0}d V\\
+        \hl{\bar{F}^T_0} &= \left(\frac{\bar{J}_0}{\det{F^T_0}}\right)^{\frac{1}{3}}F^T_0
+    \end{align}
+There is no initialization step, as the volume average has already been taken.
+\begin{equation}
+    \bar{F}^T_{0_m} = \left[\left(\frac{\bar{J}_0}{\det{F^T_0}}\right)^{\frac{1}{3}}F^T_0\right]_m
+\end{equation}
+
+The process for taking the deformation gradient of the restarted simulation is the same.
+\begin{align}
+    F_1 &= \frac{\partial x_1}{X_0}\\
+ \bar{J}_{1} &= \frac{1}{V_1}\int_{\Omega_1}V_1\det F_1 dV\\
+    \bar{F_1} &= \left(\frac{\bar{J}_{1}}{\det{F_1}}\right)^\frac{1}{3}F_1
+\end{align}
+Then the total deformation gradient is
+\begin{align}
+    \bar{F}_1^T = \bar{F}_1\bar{F}_{0_m}
+\end{align}
+Then expanded,
+\begin{align}
+    \bar{F}_1^T = \bar{F}_1\left[\left(\frac{\bar{J}_0}{\det{F^T_0}}\right)^{\frac{1}{3}}F^T_0\right]_m
+\end{align}
+Embedded in $\bar{J_0}$ term is information that pertains to the now non-existent original mesh.

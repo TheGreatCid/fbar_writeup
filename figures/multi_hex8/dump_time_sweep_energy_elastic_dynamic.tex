@@ -1,0 +1,73 @@
+% Include with: \input{figures/multi_hex8/dump_time_sweep_energy_elastic_dynamic}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.6cm},
+    width=0.46\textwidth,
+    height=0.46\textwidth,
+    grid=major, grid style={gray!25},
+    tick align=outside,
+    xlabel={Time},
+    ylabel={$\displaystyle\int_\Omega \psi_e \, dV$},
+    xmin=0,
+    legend style={font=\scriptsize, cells={anchor=west}},
+    legend pos=north west,
+]
+
+%% --- Left: Method #1 (old) ---
+\nextgroupplot[title={Method \#1}]
+%% dt = 0.8
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_out_dt_0p8.csv};
+    \addlegendentry{$t_d=0.8$}
+\addplot[blue, thick, dashed, restrict x to domain=0.801:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_restart_out_dt_0p8.csv};
+%% dt = 2.4
+\addplot[red, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_out_dt_2p4.csv};
+    \addlegendentry{$t_d=2.4$}
+\addplot[red, thick, dashed, restrict x to domain=2.401:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_restart_out_dt_2p4.csv};
+%% dt = 4.0
+\addplot[violet, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_out_dt_4.csv};
+    \addlegendentry{$t_d=4.0$}
+\addplot[violet, thick, dashed, restrict x to domain=4.001:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/old/csv/pull_test_restart_out_dt_4.csv};
+
+%% --- Right: Method #2 (new) ---
+\nextgroupplot[title={Method \#2}, yticklabel pos=right]
+%% dt = 0.8
+\addplot[blue, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_out_dt_0p8.csv};
+\addplot[blue, thick, dashed, restrict x to domain=0.801:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_restart_out_dt_0p8.csv};
+%% dt = 2.4
+\addplot[red, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_out_dt_2p4.csv};
+\addplot[red, thick, dashed, restrict x to domain=2.401:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_restart_out_dt_2p4.csv};
+%% dt = 4.0
+\addplot[violet, line width=2pt, solid]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_out_dt_4.csv};
+\addplot[violet, thick, dashed, restrict x to domain=4.001:100]
+    table[col sep=comma, x=time, y=psie_active_int]
+    {data/multi_hex8/elastic_dynamic/new/csv/pull_test_restart_out_dt_4.csv};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Multi-element, dynamic-elastic: Integrated elastic energy vs.\ time for method \#1 (left) and method \#2 (right). Three dump times are shown ($t_d=0.8, 2.4, 4.0$). Solid lines: reference; dashed lines: restart. Colors match dump times (legend in left panel).}
+\label{fig:dump_time_sweep_energy_elastic_dynamic}
+\end{figure}

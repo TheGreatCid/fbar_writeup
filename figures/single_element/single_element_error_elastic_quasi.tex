@@ -32,15 +32,15 @@
 \addplot[only marks, mark=*, mark size=3pt, red] table[
     col sep=comma,
     x=fbar_pressure_correction_max_ref,
-    y=rel_err_first,
+    y=rel_err_first, 
     meta=nu
 ]{data/single_element/elastic_qs/error/nu_sweep_results_old.csv};
-\addplot[only marks, mark=*, mark size=3pt, blue] table[
-    col sep=comma,
-    x=fbar_pressure_correction_max_ref,
-    y=rel_err_first,
-    meta=nu
-]{data/single_element/elastic_qs/error/nu_sweep_results_new.csv};
+% \addplot[only marks, mark=*, mark size=3pt, blue] table[
+%     col sep=comma,
+%     x=fbar_pressure_correction_max_ref,
+%     y=rel_err_first,
+%     meta=nu
+% ]{data/single_element/elastic_qs/error/nu_sweep_results_new.csv};
 %% --- Right panel: method 2 (new) ---
 \nextgroupplot[
     title={Method \#2},

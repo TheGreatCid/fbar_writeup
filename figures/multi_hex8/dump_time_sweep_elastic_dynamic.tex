@@ -1,0 +1,50 @@
+% Include with: \input{figures/multi_hex8/dump_time_sweep_elastic_dynamic}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+        group size=2 by 1,
+        horizontal sep=1.8cm,
+    },
+    width=0.42\textwidth,
+    height=0.42\textwidth,
+    grid=major,
+    grid style={gray!25},
+    tick align=outside,
+    xlabel={Max F-bar pressure correction at dump},
+    ylabel={Relative error at first step},
+    ymode=log,
+    nodes near coords,
+    nodes near coords style={font=\small, anchor=south west},
+    point meta=explicit symbolic,
+]
+
+%% --- Left panel: Method #1 (old) ---
+\nextgroupplot[title={Method \#1}]
+\addplot[only marks, mark=*, mark size=3pt, red] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_at_dump,
+    y=rel_err_first,
+    meta=dump_time
+]{data/multi_hex8/elastic_dynamic/strength/dump_time_sweep_results_old.csv};
+\addplot[only marks, mark=*, mark size=3pt, blue] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_at_dump,
+    y=rel_err_first,
+    meta=dump_time
+]{data/multi_hex8/elastic_dynamic/strength/dump_time_sweep_results_new.csv};
+%% --- Right panel: Method #2 (new) ---
+\nextgroupplot[title={Method \#2}, yticklabel pos=right]
+\addplot[only marks, mark=*, mark size=3pt, blue] table[
+    col sep=comma,
+    x=fbar_pressure_correction_max_at_dump,
+    y=rel_err_first,
+    meta=dump_time
+]{data/multi_hex8/elastic_dynamic/strength/dump_time_sweep_results_new.csv};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{Multi-element, dynamic-elastic: Relative error at first restart step vs.\ maximum F-bar pressure correction at dump time, for method \#1 (left) and method \#2 (right). Each point is labelled with the dump time.}
+\label{fig:dump_time_sweep_elastic_dynamic}
+\end{figure}
